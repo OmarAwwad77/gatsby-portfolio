@@ -21,7 +21,13 @@ export default createGlobalStyle`
       font-weight: 400;
       font-size: 1.6rem;
       line-height: 1.6;
+      background: ${p => p.theme.colors.background};
       color: ${p => p.theme.colors.text};
+      overflow: hidden;
+      /* &::-webkit-scrollbar{
+        display: none;
+      } */
+      /* -ms-overflow-style: none; */
     }
     form,
     input,

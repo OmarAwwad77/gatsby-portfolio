@@ -2,6 +2,8 @@ import React from "react"
 import styled, { ThemeProvider } from "styled-components"
 import GlobalStyles from "../styles/global-styles"
 import theme from "../styles/theme"
+import Nav from "../components/nav/nav"
+import NavControls from "../components/nav-controls/nav-controls"
 
 const Wrapper = styled.div<{ y?: string }>`
   position: relative;
@@ -13,16 +15,17 @@ const Wrapper = styled.div<{ y?: string }>`
   }
 `
 
-const layout: React.FC<{ y?: string }> = ({ children, y }) => {
+const Layout: React.FC<{ y?: string }> = ({ children, y }) => {
   return (
     <ThemeProvider theme={theme}>
+      <Nav />
+      <NavControls />
       <Wrapper y={y}>
-        <GlobalStyles />
-
         {children}
+        <GlobalStyles />
       </Wrapper>
     </ThemeProvider>
   )
 }
 
-export default layout
+export default Layout

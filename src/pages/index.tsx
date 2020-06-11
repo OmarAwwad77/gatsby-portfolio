@@ -3,6 +3,7 @@ import styled from "styled-components"
 import Layout from "../components/layout"
 import Hero from "../components/hero/hero"
 import About from "../components/about/about"
+import Context from "../components/context"
 
 const Wrapper = styled.div``
 const elements = [Hero, About]
@@ -20,7 +21,7 @@ export default function Home() {
     return () => document.removeEventListener("wheel", onWheelHandler)
   }, [currentIndex])
 
-  const onWheelHandler = (e: WheelEvent) => {
+  const onWheelHandler = (e: WheelEvent | { deltaY: number }) => {
     if (waitTill.current > Date.now()) return
     waitTill.current = Date.now() + 400
     if (e.deltaY > 0 && currentIndex.index === elements.length - 1) return
@@ -40,11 +41,13 @@ export default function Home() {
 
   return (
     <Wrapper>
-      <Layout y={`${y}vh`}>
-        {elements.map((El, i) => (
-          <El current={i === index} key={i} />
-        ))}
-      </Layout>
+      <Context.Provider value={{ navigate: onWheelHandler }}>
+        <Layout y={`${y}vh`}>
+          {elements.map((El, i) => (
+            <El current={i === index} key={i} />
+          ))}
+        </Layout>
+      </Context.Provider>
     </Wrapper>
   )
 }

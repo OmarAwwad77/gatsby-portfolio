@@ -1,5 +1,5 @@
 import React from "react"
-import { Section as Wrapper, Lines, Line } from "./hero.styles"
+import { Wrapper, Lines, Line, H1, P, PortfolioButton } from "./hero.styles"
 
 interface OwnProps {
   anim?: "enter" | "leave"
@@ -17,6 +17,15 @@ const hero: React.FC<OwnProps> = ({ anim, dir, current }) => {
         <Line delay={".5s"} />
         <Line delay={"1.5s"} />
       </Lines>
+      <H1>
+        Hello!,
+        <br /> I'm <span>omar awwad</span> <br />
+        Front-end web developer
+      </H1>
+      <P>MERN full stack developer in the making</P>
+      <PortfolioButton>
+        <span>my portfolio</span>
+      </PortfolioButton>
     </Wrapper>
   )
 }

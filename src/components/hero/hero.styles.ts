@@ -1,35 +1,7 @@
 import styled, { keyframes } from "styled-components"
-export { Section } from "../../styles/general-components"
-
-export const TextArea = styled.div`
-  width: 75%;
-  height: 100%;
-`
-
-export const Polygon = styled.div`
-  position: relative;
-  z-index: 1;
-  width: 35rem;
-  height: 100%;
-  background: ${p => p.theme.colors.secondary};
-  clip-path: polygon(0 0, 35% 0, 100% 100%, 0% 100%);
-`
-
-export const Image = styled.div<{ url: string }>`
-  position: absolute;
-  z-index: 2;
-  top: 50%;
-  left: 2.5rem;
-  width: 35rem;
-  height: 60rem;
-  border-radius: 1.5rem;
-  transform: translateY(-50%);
-  background: url(${p => p.url}) center/cover no-repeat;
-`
+import { Section } from "../../styles/general-components"
 
 const lineAnimOdd = keyframes`
-
-
   50%{
     top: calc(100% - 3rem)
   }
@@ -40,7 +12,6 @@ const lineAnimOdd = keyframes`
 `
 
 const lineAnimEven = keyframes`
-
   50%{
     top: 0
   }
@@ -49,7 +20,77 @@ const lineAnimEven = keyframes`
     top: calc(100% - 3rem)
   }
 
-  
+`
+
+export const Wrapper = styled(Section)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  & > :not(:last-child) {
+    margin-bottom: 3rem;
+  }
+`
+
+export const H1 = styled.h1`
+  font-size: 5.2rem;
+  color: #fff;
+  text-transform: capitalize;
+  text-align: center;
+  line-height: 1.4;
+
+  span {
+    background: linear-gradient(
+      to left,
+      ${p => p.theme.colors.secondary},
+      transparent
+    );
+    border-radius: 5px;
+    padding-right: 1rem;
+  }
+`
+
+export const P = styled.p`
+  text-transform: capitalize;
+  background: #000;
+`
+
+export const PortfolioButton = styled.a`
+  position: relative;
+  text-transform: uppercase;
+  color: #fff;
+  background: #272829;
+  padding: 1rem 3rem;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover::after {
+    /* border-radius: 5px;
+    width: 100%;
+    height: 100%; */
+    right: 10%;
+    width: 80%;
+  }
+  span {
+    position: relative;
+    z-index: 1;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 60%;
+    background: ${p => p.theme.colors.secondary};
+    border-radius: 6rem 0rem;
+    transition: all 0.2s ease-out;
+  }
 `
 
 export const Line = styled.div<{ delay?: string }>`
@@ -78,10 +119,20 @@ export const Line = styled.div<{ delay?: string }>`
 
 export const Lines = styled.div`
   position: absolute;
+  z-index: -1;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: space-evenly;
+  background: url("https://images.unsplash.com/photo-1591026433494-540fb0f481f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80")
+      center/cover no-repeat,
+    #252324c7;
+
+  background-blend-mode: soft-light;
 `
+
+// https://images.unsplash.com/photo-1586303869386-31bdb5c1a334?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80
+
+// https://images.unsplash.com/photo-1591026433494-540fb0f481f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useRef } from "react"
 import styled from "styled-components"
 import Layout from "../components/layout"
 import Hero from "../components/hero/hero"
@@ -16,18 +16,21 @@ export default function Home() {
   }>({ index: 0, y: 0 })
 
   const waitTill = useRef<number>(0)
-  useEffect(() => {
-    document.addEventListener("wheel", onWheelHandler)
-    return () => document.removeEventListener("wheel", onWheelHandler)
-  }, [currentIndex])
+
+  // useEffect(() => {
+  //   wrapperRef.current?.addEventListener("wheel", onWheelHandler)
+  //   return () =>
+  //     wrapperRef.current?.removeEventListener("wheel", onWheelHandler)
+  // }, [currentIndex])
 
   const onWheelHandler = (e: WheelEvent | { deltaY: number }) => {
+    const deltaY = e.deltaY
     if (waitTill.current > Date.now()) return
     waitTill.current = Date.now() + 400
-    if (e.deltaY > 0 && currentIndex.index === elements.length - 1) return
-    if (e.deltaY < 0 && currentIndex.index === 0) return
+    if (deltaY > 0 && currentIndex.index === elements.length - 1) return
+    if (deltaY < 0 && currentIndex.index === 0) return
     setCurrentIndex(({ index, dir, y }) => {
-      const newIndex = e.deltaY > 0 ? index + 1 : index - 1
+      const newIndex = deltaY > 0 ? index + 1 : index - 1
       const newDir = index > newIndex ? "top" : "bottom"
       return {
         index: newIndex,
@@ -37,10 +40,10 @@ export default function Home() {
     })
   }
 
-  const { index, dir, y } = currentIndex
+  const { index, y } = currentIndex
 
   return (
-    <Wrapper>
+    <Wrapper onWheel={onWheelHandler}>
       <Context.Provider value={{ navigate: onWheelHandler }}>
         <Layout y={`${y}vh`}>
           {elements.map((El, i) => (

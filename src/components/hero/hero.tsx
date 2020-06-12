@@ -10,7 +10,7 @@ interface OwnProps {
 const hero: React.FC<OwnProps> = ({ anim, dir, current }) => {
   return (
     <Wrapper current={current}>
-      <Lines>
+      <Lines withImg>
         <Line delay={".5s"} />
         <Line delay={"1.5s"} />
         <Line />

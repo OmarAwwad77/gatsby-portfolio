@@ -1,34 +1,15 @@
-import styled, { keyframes } from "styled-components"
-import { Section } from "../../styles/general-components"
-
-const lineAnimOdd = keyframes`
-  50%{
-    top: calc(100% - 3rem)
-  }
-
-  100%{
-    top: 0;
-  }
-`
-
-const lineAnimEven = keyframes`
-  50%{
-    top: 0
-  }
-
-  100%{
-    top: calc(100% - 3rem)
-  }
-
-`
+import styled from "styled-components"
+import { Section, Line, Lines } from "../../styles/general-components"
+export { Line, Lines }
 
 export const Wrapper = styled(Section)`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 
-  & > :not(:last-child) {
+  & > *:not(:last-child) {
     margin-bottom: 3rem;
   }
 `
@@ -91,46 +72,6 @@ export const PortfolioButton = styled.a`
     border-radius: 6rem 0rem;
     transition: all 0.2s ease-out;
   }
-`
-
-export const Line = styled.div<{ delay?: string }>`
-  position: relative;
-  width: 1px;
-  background: #69696930;
-  backface-visibility: hidden;
-
-  &::after {
-    content: "";
-    position: absolute;
-    background: #f7eeee38;
-    width: 2px;
-    height: 3rem;
-    top: 0%;
-    animation: ${lineAnimOdd} 15s linear ${p => p.delay} infinite alternate
-      forwards;
-    backface-visibility: hidden;
-  }
-  &:nth-child(even)::after {
-    top: calc(100% - 3rem);
-    animation: ${lineAnimEven} 15s linear ${p => p.delay} infinite alternate
-      forwards;
-  }
-`
-
-export const Lines = styled.div`
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  background: url("https://images.unsplash.com/photo-1591026433494-540fb0f481f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80")
-      center/cover no-repeat,
-    #252324c7;
-
-  background-blend-mode: soft-light;
 `
 
 // https://images.unsplash.com/photo-1586303869386-31bdb5c1a334?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80

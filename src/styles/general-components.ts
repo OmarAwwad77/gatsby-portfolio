@@ -3,7 +3,8 @@ import styled, { keyframes, css } from "styled-components"
 export const Section = styled.section<{ current: boolean }>`
   position: relative;
   height: calc(100vh - 5rem) !important;
-  transform: scale(${p => (p.current ? 1 : 0.88)});
+  transform: scale(${p => (p.current ? 1 : 0.88)}) rotate(0.02deg);
+  backface-visibility: hidden;
   background: ${p => p.theme.colors.main};
   transition: all 0.3s 0.5s ease-out;
 `

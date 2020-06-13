@@ -8,15 +8,17 @@ import {
   GridWrapper,
   Lines,
   Line,
+  AboutMe,
 } from "./about.styles"
 import { Scrollbars } from "react-custom-scrollbars"
+import InfoField from "../info-field/info-field"
 
 interface OwnProps {
   anim?: "enter" | "leave"
   dir?: "top" | "bottom"
   current: boolean
 }
-const about: React.FC<OwnProps> = ({ dir, anim, current }) => {
+const About: React.FC<OwnProps> = ({ dir, anim, current }) => {
   const { colors } = useTheme()
 
   const onWheelHandler = (e: React.WheelEvent<any>) => {
@@ -45,7 +47,13 @@ const about: React.FC<OwnProps> = ({ dir, anim, current }) => {
         <Line delay={".5s"} />
         <Line delay={"1.5s"} />
       </Lines>
-      <Scrollbars renderThumbVertical={() => <div />} onWheel={onWheelHandler}>
+      <Scrollbars
+        style={{ transform: "translateZ(0)" }}
+        renderThumbVertical={() => (
+          <div style={{ background: colors.secondary }} />
+        )}
+        onWheel={onWheelHandler}
+      >
         <GridWrapper>
           <Grid>
             <Img
@@ -57,6 +65,67 @@ const about: React.FC<OwnProps> = ({ dir, anim, current }) => {
               Hello!, I'm <span>Omar Awwad</span>
               <br /> Javascript/React Enthusiast
             </Title>
+            <AboutMe>
+              I have been playing with react for a little over 2 years after one
+              of my college professors advised me to give it a try and I have
+              been in love with it ever since. After I graduated in july 2019
+              with a Bachelor's degree in IT, I got a scholarship to pursue a
+              master's degree in management information system. However after
+              only one semester I decided to stop and work full-time instead.
+            </AboutMe>
+            <InfoField gridArea={"name"} label="Name" value="Omar Awwad" />
+            <InfoField gridArea={"age"} label="Age" value="24" />
+            <InfoField
+              gridArea={"email"}
+              label="Email"
+              value="OmarAwwad010@gmail.com"
+            />
+            <InfoField
+              gridArea={"phone"}
+              label="Phone"
+              value="+2 01116409608"
+            />
+            <InfoField
+              gridArea={"education"}
+              label="Education"
+              value="Bsc. Information Technology"
+            />
+            <InfoField
+              gridArea={"nationality"}
+              label="Nationality"
+              value="Egyptian"
+            />
+
+            <InfoField
+              gridArea={"university"}
+              label="University"
+              value="Eastern mediterranean university (Northern Cyprus) "
+            />
+
+            <InfoField
+              gridArea={"skills"}
+              label="Skills"
+              values={[
+                "html",
+                "css",
+                "sass",
+                "Javascript",
+                "typescript",
+                "react",
+                "redux",
+                "redux-saga",
+                "redux-thunk",
+
+                "gatsby",
+                "next.js",
+                "styled-components",
+              ]}
+            />
+            <InfoField
+              gridArea={"learning"}
+              label="Learning"
+              values={["node.js", "express", "mongodb", "graphQl"]}
+            />
           </Grid>
         </GridWrapper>
       </Scrollbars>
@@ -64,4 +133,4 @@ const about: React.FC<OwnProps> = ({ dir, anim, current }) => {
   )
 }
 
-export default about
+export default About

@@ -26,8 +26,7 @@ export const GridWrapper = styled.div`
   display: flex;
   justify-content: start;
   align-items: flex-start;
-  padding-top: 2rem;
-  padding-left: 3rem;
+  padding: 2rem 0 2rem 3rem;
 `
 
 export const Img = styled.div<{ url: string }>`
@@ -41,7 +40,7 @@ export const Img = styled.div<{ url: string }>`
   background-position: center 0;
   background-size: 55rem;
   background-repeat: no-repeat;
-  filter: opacity(0.85);
+  box-shadow: 10px 8px 20px 1px #000;
 `
 
 export const Title = styled.h2`

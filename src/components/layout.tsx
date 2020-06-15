@@ -8,11 +8,11 @@ import { Helmet } from "react-helmet"
 
 const Wrapper = styled.div<{ y?: string }>`
   position: relative;
-  padding: 2.5rem;
+  padding: ${p => p.theme.layoutPadding + "rem"};
   transition: all 0.5s ease-out;
   transform: translateY(${p => p.y ?? 0});
   & > *:not(:first-child) {
-    margin-top: 5rem;
+    margin-top: ${p => p.theme.layoutPadding * 2 + "rem"};
   }
 `
 

@@ -3,10 +3,11 @@ import styled from "styled-components"
 import Layout from "../components/layout"
 import Hero from "../components/hero/hero"
 import About from "../components/about/about"
+import ShowCase from "../components/show-case/show-case"
 import Context from "../components/context"
 
 const Wrapper = styled.div``
-const elements = [Hero, About]
+const elements = [Hero, About, ShowCase]
 
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState<{

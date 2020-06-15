@@ -8,5 +8,6 @@ declare module "styled-components" {
       secondary: string
       text: string
     }
+    layoutPadding: number
   }
 }

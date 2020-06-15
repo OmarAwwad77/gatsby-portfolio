@@ -7,6 +7,7 @@ const theme: DefaultTheme = {
     secondary: "#66d9ca",
     text: "#9c9c9c",
   },
+  layoutPadding: 2.5,
 }
 
 export default theme

@@ -22,7 +22,7 @@ const hero: React.FC<OwnProps> = ({ anim, dir, current }) => {
         <br /> I'm <span>omar awwad</span> <br />
         Front-end web developer
       </H1>
-      <P>MERN full stack developer in the making</P>
+      <P>Javascript/React Ninja</P>
       <PortfolioButton>
         <span>my portfolio</span>
       </PortfolioButton>

@@ -2,7 +2,7 @@ import styled, { keyframes, css } from "styled-components"
 
 export const Section = styled.section<{ current: boolean }>`
   position: relative;
-  height: calc(100vh - 5rem) !important;
+  height: calc(100vh - ${p => p.theme.layoutPadding * 2 + "rem"}) !important;
   transform: scale(${p => (p.current ? 1 : 0.88)}) rotate(0.02deg);
   backface-visibility: hidden;
   background: ${p => p.theme.colors.main};

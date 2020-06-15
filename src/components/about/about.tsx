@@ -13,12 +13,10 @@ import {
 import { Scrollbars } from "react-custom-scrollbars"
 import InfoField from "../info-field/info-field"
 
-interface OwnProps {
-  anim?: "enter" | "leave"
-  dir?: "top" | "bottom"
+interface Props {
   current: boolean
 }
-const About: React.FC<OwnProps> = ({ dir, anim, current }) => {
+const About: React.FC<Props> = ({ current }) => {
   const { colors } = useTheme()
 
   const onWheelHandler = (e: React.WheelEvent<any>) => {
@@ -99,23 +97,23 @@ const About: React.FC<OwnProps> = ({ dir, anim, current }) => {
             <InfoField
               gridArea={"university"}
               label="University"
-              value="Eastern mediterranean university (Northern Cyprus) "
+              value="Eastern Mediterranean University (Northern Cyprus) "
             />
 
             <InfoField
               gridArea={"skills"}
               label="Skills"
               values={[
-                "html",
-                "css",
+                "html5",
+                "css3",
                 "sass",
+                "Git/Github",
                 "Javascript",
                 "typescript",
                 "react",
                 "redux",
                 "redux-saga",
                 "redux-thunk",
-
                 "gatsby",
                 "next.js",
                 "styled-components",
@@ -124,7 +122,7 @@ const About: React.FC<OwnProps> = ({ dir, anim, current }) => {
             <InfoField
               gridArea={"learning"}
               label="Learning"
-              values={["node.js", "express", "mongodb", "graphQl"]}
+              values={["react-native, vue.js"]}
             />
           </Grid>
         </GridWrapper>

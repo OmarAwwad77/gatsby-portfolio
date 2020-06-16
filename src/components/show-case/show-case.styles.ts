@@ -5,13 +5,13 @@ import { Section } from "../../styles/general-components"
 export const Wrapper = styled(Section)`
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   overflow: hidden;
 `
 
 export const Scrollbar = styled.div`
   position: absolute;
-  right: 11rem;
+  right: 8%;
   width: 4rem;
   height: 70%;
   display: flex;
@@ -24,7 +24,7 @@ export const Scrollbar = styled.div`
   }
 `
 
-export const ScrollController = styled.span`
+export const ScrollController = styled.span<{ transition?: boolean }>`
   position: absolute;
   color: ${p => p.theme.colors.secondary};
   display: flex;
@@ -32,6 +32,7 @@ export const ScrollController = styled.span`
   align-items: center;
   transform: skewY(55deg);
   border-radius: 5rem;
+  transition: ${p => p.transition && "all 0.2s ease-in-out"};
   background: ${p => p.theme.colors.main};
   cursor: pointer;
   .project-number,
@@ -47,7 +48,7 @@ export const ScrollController = styled.span`
 export const Projects = styled(animated.div)`
   position: absolute;
   top: 0;
-  width: 70rem;
+  width: 90%;
   min-height: 100%;
   display: flex;
   flex-direction: column;
@@ -56,19 +57,4 @@ export const Projects = styled(animated.div)`
   backface-visibility: hidden;
   transform-style: preserve-3d;
   transform-origin: top;
-  /* border: 2px solid red; */
-`
-
-export const Project = styled.div`
-  position: relative;
-  width: 90%;
-  height: calc(100vh - ${p => p.theme.layoutPadding * 2 + "rem"});
-  /* border: 2px solid green; */
-
-  span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) translate3d(0, 0, 0);
-  }
 `

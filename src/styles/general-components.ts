@@ -72,3 +72,37 @@ export const Lines = styled.div<{ withImg?: boolean }>`
     `}
   background-blend-mode: soft-light;
 `
+
+export const Icon = styled.svg`
+  position: relative;
+  z-index: 1;
+  color: ${p => p.theme.colors.main};
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease-out;
+`
+
+export const IconWrapper = styled.div<{ nav?: boolean }>`
+  background: ${p => p.theme.colors.secondary};
+  width: 4rem;
+  height: 4rem;
+  border-radius: 5rem;
+  padding: 1rem;
+  cursor: pointer;
+
+  ${p =>
+    p.nav &&
+    css`
+      &::after {
+        content: "";
+        height: 100%;
+        width: 100%;
+        border-radius: 5rem;
+        position: absolute;
+        top: 0;
+        right: 0%;
+        background: transparent;
+        transition: all 0.3s ease-out;
+      }
+    `}
+`

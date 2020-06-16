@@ -89,9 +89,9 @@ const About: React.FC<Props> = ({ current }) => {
               value="Bsc. Information Technology"
             />
             <InfoField
-              gridArea={"nationality"}
-              label="Nationality"
-              value="Egyptian"
+              gridArea={"languages"}
+              label="Speaks"
+              value="English/Arabic"
             />
 
             <InfoField
@@ -107,7 +107,7 @@ const About: React.FC<Props> = ({ current }) => {
                 "html5",
                 "css3",
                 "sass",
-                "Git/Github",
+                "git/github",
                 "Javascript",
                 "typescript",
                 "react",

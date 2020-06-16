@@ -35,11 +35,11 @@ export const Value = styled.span`
 `
 
 export const Tag = styled.span`
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
   font-size: 1.3rem;
   color: #000;
   padding: 0.5rem;
-  margin: 1rem;
+  margin: 0.5rem 0.5rem 0.5rem 0;
   background: ${p => p.theme.colors.secondary};
   border-radius: 0.5rem;
   font-weight: 600;

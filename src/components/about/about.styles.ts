@@ -15,7 +15,7 @@ export const Grid = styled.div`
     "img text text"
     "img name age"
     "img email phone"
-    "img education nationality"
+    "img education languages"
     "img university university"
     "skills skills skills"
     "learning learning learning";

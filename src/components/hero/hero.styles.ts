@@ -1,6 +1,9 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
+import { animated } from "react-spring"
+
 import { Section, Line, Lines } from "../../styles/general-components"
 export { Line, Lines }
+import media from "../../styles/media-queries"
 
 export const Wrapper = styled(Section)`
   display: flex;
@@ -14,7 +17,7 @@ export const Wrapper = styled(Section)`
   }
 `
 
-export const H1 = styled.h1`
+export const H1 = styled(animated.h1)`
   font-size: 5.2rem;
   color: #fff;
   text-transform: capitalize;
@@ -30,14 +33,22 @@ export const H1 = styled.h1`
     border-radius: 5px;
     padding-right: 1rem;
   }
+
+  ${media.BREAK_POINT_900PX(css`
+    font-size: 4.5rem;
+  `)}
+
+  ${media.BREAK_POINT_450PX(css`
+    font-size: 4.1rem;
+  `)}
 `
 
-export const P = styled.p`
+export const P = styled(animated.p)`
   text-transform: capitalize;
   background: #000;
 `
 
-export const PortfolioButton = styled.a`
+export const PortfolioButton = styled(animated.a)`
   position: relative;
   text-transform: uppercase;
   color: #fff;
@@ -50,9 +61,6 @@ export const PortfolioButton = styled.a`
   cursor: pointer;
 
   &:hover::after {
-    /* border-radius: 5px;
-    width: 100%;
-    height: 100%; */
     right: 10%;
     width: 80%;
   }

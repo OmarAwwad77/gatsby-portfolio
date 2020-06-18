@@ -1,78 +1,36 @@
-import React from "react"
-import styled from "styled-components"
-import { Icon, IconWrapper } from "../../styles/general-components"
+import React, { useContext } from "react"
+import Context from "../context"
+
 import homeIcon from "../../assets/home-solid.svg"
 import userIcon from "../../assets/user-solid.svg"
 import portfolioIcon from "../../assets/briefcase-solid.svg"
 import githubIcon from "../../assets/github.svg"
 
-const Wrapper = styled.ul`
-  position: fixed;
-  z-index: 2;
-  top: 50vh;
-  right: 4rem;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-`
+import { Icon, IconWrapper, NavItem, Wrapper } from "./nav.styles"
 
-const NavItem = styled.li`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 4rem;
+const Nav: React.FC<{ show?: boolean; onClick: () => void }> = ({
+  show,
+  onClick,
+}) => {
+  const { navigate } = useContext(Context)
 
-  &:not(:first-child) {
-    margin-top: 2rem;
-  }
-
-  &:hover {
-    width: auto;
-    ${IconWrapper}::after {
-      width: 100%;
-      right: 0%;
-      background: ${p => p.theme.colors.secondary};
-    }
-    ${Icon} {
-      color: #fff;
-    }
-    span {
-      display: block;
-    }
-  }
-
-  span {
-    display: none;
-    position: relative;
-    z-index: 1;
-    color: #fff;
-    font-weight: 600;
-    margin-right: 1rem;
-    margin-left: 1rem;
-    cursor: pointer;
-  }
-`
-
-const Nav = () => {
   return (
-    <Wrapper>
-      <NavItem>
+    <Wrapper onClick={onClick} show={show}>
+      <NavItem onClick={() => navigate({ navConfig: { index: 0, y: 0 } })}>
         <span>Home</span>
         <IconWrapper nav>
           <Icon as={homeIcon} />
         </IconWrapper>
       </NavItem>
 
-      <NavItem>
+      <NavItem onClick={() => navigate({ navConfig: { index: 1, y: -100 } })}>
         <span>About</span>
         <IconWrapper nav>
           <Icon as={userIcon} />
         </IconWrapper>
       </NavItem>
 
-      <NavItem>
+      <NavItem onClick={() => navigate({ navConfig: { index: 2, y: -200 } })}>
         <span>Portfolio</span>
         <IconWrapper nav>
           <Icon as={portfolioIcon} />

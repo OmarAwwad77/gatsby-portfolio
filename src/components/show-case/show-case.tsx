@@ -7,6 +7,8 @@ import {
   Scrollbar,
   Projects,
   ScrollController,
+  Line,
+  Lines,
 } from "./show-case.styles"
 
 interface Props {
@@ -51,20 +53,22 @@ const ShowCase: React.FC<Props> = ({ current }) => {
   })
 
   const onMouseMove = useCallback((e: any) => {
-    const element = e.currentTarget as HTMLElement
+    const element = scrollbarRef.current!
+    const pageY = e.pageY ?? e.targetTouches[0].pageY
+
     const elementHeight = element.offsetHeight
     const maxTop = Math.floor(element.getBoundingClientRect().top)
     const maxBottom = Math.floor(maxTop + elementHeight)
 
-    if (e.pageY !== 0 && e.pageY <= maxBottom && e.pageY >= maxTop) {
-      const top = e.pageY - maxTop
+    if (pageY !== 0 && pageY <= maxBottom && pageY >= maxTop) {
+      const top = pageY - maxTop
       const percentage = Math.floor((top / elementHeight) * 100)
       const till = Date.now() + 300
       setScroll({ top, percentage, till })
     }
   }, [])
 
-  const onMouseUpOrLeave = (e: React.MouseEvent) => {
+  const onMouseUpOrLeave = () => {
     const scrollbarHeight = scrollbarRef.current?.clientHeight!
 
     const index = Math.round(scroll.percentage / projectPercentage)
@@ -74,7 +78,8 @@ const ShowCase: React.FC<Props> = ({ current }) => {
       top: (scrollbarHeight * breakPoints[index]) / 100,
     }))
     setProjects({ scale: false })
-    e.currentTarget.removeEventListener("mousemove", onMouseMove)
+    scrollbarRef.current!.removeEventListener("mousemove", onMouseMove)
+    scrollbarRef.current!.removeEventListener("touchmove", onMouseMove)
   }
 
   const onWheelHandler = (e: WheelEvent) => {
@@ -115,24 +120,19 @@ const ShowCase: React.FC<Props> = ({ current }) => {
 
   return (
     <Wrapper ref={wrapperRef} current={current}>
+      <Lines>
+        <Line delay={".5s"} />
+        <Line delay={"1.5s"} />
+        <Line />
+        <Line delay={".5s"} />
+        <Line delay={"1.5s"} />
+      </Lines>
       <Projects style={animStyles}>
         <Project
           url={
             "https://firebasestorage.googleapis.com/v0/b/connect-c44e6.appspot.com/o/images%2F1591353475621?alt=media&token=d086a12e-9d92-4b08-9e4b-a7ab924dba54"
           }
         />
-        {/* <Project>
-          <span>2</span>
-        </Project>
-        <Project>
-          <span>3</span>
-        </Project>
-        <Project>
-          <span>4</span>
-        </Project>
-        <Project>
-          <span>5</span>
-        </Project> */}
       </Projects>
       <Scrollbar
         ref={scrollbarRef}
@@ -143,6 +143,12 @@ const ShowCase: React.FC<Props> = ({ current }) => {
           setProjects({ scale: true })
           e.currentTarget.addEventListener("mousemove", onMouseMove)
         }}
+        onTouchStart={e => {
+          e.preventDefault()
+          setProjects({ scale: true })
+          e.currentTarget.addEventListener("touchmove", onMouseMove)
+        }}
+        onTouchEnd={onMouseUpOrLeave}
       >
         <ScrollController
           transition={!projects.scale}

@@ -1,5 +1,8 @@
-import React from "react"
+import React, { useRef, useState } from "react"
 import { useTheme } from "styled-components"
+import { useChain, useSpring, ReactSpringHook } from "react-spring"
+import VisibilitySensor from "../visibility-sensor"
+
 import {
   Wrapper,
   Grid,
@@ -18,6 +21,49 @@ interface Props {
 }
 const About: React.FC<Props> = ({ current }) => {
   const { colors } = useTheme()
+
+  const [visible, setVisible] = useState(false)
+
+  const rightSpringRef = useRef<ReactSpringHook>(null)
+  const leftSpringRef = useRef<ReactSpringHook>(null)
+  const bottomSpringRef = useRef<ReactSpringHook>(null)
+  const topSpringRef = useRef<ReactSpringHook>(null)
+
+  const rightAnimProps = useSpring({
+    from: { transform: `translateX(100vw)` },
+    transform: visible ? `translateX(0vw)` : `translateX(100vw)`,
+    ref: rightSpringRef,
+  })
+
+  const leftAnimProps = useSpring({
+    from: {
+      transform: `translateX(-100vw)`,
+    },
+    transform: visible ? `translateX(0vw)` : `translateX(-100vw)`,
+    ref: leftSpringRef,
+  })
+
+  const topAnimProps = useSpring({
+    from: {
+      transform: `translateY(-100vh)`,
+    },
+    transform: visible ? `translateY(0vh)` : `translateY(-100vh)`,
+    ref: topSpringRef,
+  })
+
+  const bottomAnimProps = useSpring({
+    from: {
+      transform: `translateY(100vh)`,
+    },
+    transform: visible ? `translateY(0vh)` : `translateY(100vh)`,
+    ref: bottomSpringRef,
+  })
+
+  useChain(
+    visible
+      ? [topSpringRef, leftSpringRef, rightSpringRef, bottomSpringRef]
+      : []
+  )
 
   const onWheelHandler = (e: React.WheelEvent<any>) => {
     const srElement = e.currentTarget.firstElementChild!
@@ -52,80 +98,108 @@ const About: React.FC<Props> = ({ current }) => {
         )}
         onWheel={onWheelHandler}
       >
-        <GridWrapper>
-          <Grid>
-            <Img
-              url={
-                "https://firebasestorage.googleapis.com/v0/b/connect-c44e6.appspot.com/o/images%2F1591360719246?alt=media&token=d7a57ccb-9409-4db0-bd1c-423a0c11b185"
-              }
-            />
-            <Title>
-              Hello!, I'm <span>Omar Awwad</span>
-              <br /> Javascript/React Enthusiast
-            </Title>
-            <AboutMe>
-              I have been playing with react for a little over 2 years after one
-              of my college professors advised me to give it a try and I have
-              been in love with it ever since. After I graduated in july 2019
-              with a Bachelor's degree in IT, I got a scholarship to pursue a
-              master's degree in management information system. However after
-              only one semester I decided to stop and work full-time instead.
-            </AboutMe>
-            <InfoField gridArea={"name"} label="Name" value="Omar Awwad" />
-            <InfoField gridArea={"age"} label="Age" value="24" />
-            <InfoField
-              gridArea={"email"}
-              label="Email"
-              value="OmarAwwad010@gmail.com"
-            />
-            <InfoField
-              gridArea={"phone"}
-              label="Phone"
-              value="+2 01116409608"
-            />
-            <InfoField
-              gridArea={"education"}
-              label="Education"
-              value="Bsc. Information Technology"
-            />
-            <InfoField
-              gridArea={"languages"}
-              label="Speaks"
-              value="English/Arabic"
-            />
+        <VisibilitySensor
+          once
+          partialVisibility
+          onChange={isVisible => {
+            console.log(isVisible)
+            setVisible(isVisible)
+          }}
+        >
+          <GridWrapper>
+            <Grid>
+              <Img
+                style={leftAnimProps}
+                url={
+                  "https://firebasestorage.googleapis.com/v0/b/connect-c44e6.appspot.com/o/images%2F1591360719246?alt=media&token=d7a57ccb-9409-4db0-bd1c-423a0c11b185"
+                }
+              />
+              <Title style={topAnimProps}>
+                Hello!, I'm <span>Omar Awwad</span>
+                <br /> Javascript/React Enthusiast
+              </Title>
+              <AboutMe style={rightAnimProps}>
+                I have been playing with react for a little over 2 years after
+                one of my college professors advised me to give it a try and I
+                have been in love with it ever since. After I graduated in july
+                2019 with a Bachelor's degree in IT, I got a scholarship to
+                pursue a master's degree in management information system.
+                However after only one semester I decided to stop and work
+                full-time instead.
+              </AboutMe>
+              <InfoField
+                animProps={rightAnimProps}
+                gridArea={"name"}
+                label="Name"
+                value="Omar Awwad"
+              />
+              <InfoField
+                animProps={rightAnimProps}
+                gridArea={"age"}
+                label="Age"
+                value="24"
+              />
+              <InfoField
+                animProps={rightAnimProps}
+                gridArea={"email"}
+                label="Email"
+                value="OmarAwwad010@gmail.com"
+              />
+              <InfoField
+                animProps={rightAnimProps}
+                gridArea={"phone"}
+                label="Phone"
+                value="+2 01116409608"
+              />
+              <InfoField
+                animProps={rightAnimProps}
+                gridArea={"education"}
+                label="Education"
+                value="Bsc. Information Technology"
+              />
+              <InfoField
+                animProps={rightAnimProps}
+                gridArea={"languages"}
+                label="Speaks"
+                value="English/Arabic"
+              />
 
-            <InfoField
-              gridArea={"university"}
-              label="University"
-              value="Eastern Mediterranean University (Northern Cyprus) "
-            />
+              <InfoField
+                animProps={rightAnimProps}
+                gridArea={"university"}
+                label="University"
+                value="Eastern Mediterranean University (Northern Cyprus) "
+              />
 
-            <InfoField
-              gridArea={"skills"}
-              label="Skills"
-              values={[
-                "html5",
-                "css3",
-                "sass",
-                "git/github",
-                "Javascript",
-                "typescript",
-                "react",
-                "redux",
-                "redux-saga",
-                "redux-thunk",
-                "gatsby",
-                "next.js",
-                "styled-components",
-              ]}
-            />
-            <InfoField
-              gridArea={"learning"}
-              label="Learning"
-              values={["react-native, vue.js"]}
-            />
-          </Grid>
-        </GridWrapper>
+              <InfoField
+                animProps={bottomAnimProps}
+                gridArea={"skills"}
+                label="Skills"
+                values={[
+                  "html5",
+                  "css3",
+                  "sass",
+                  "git/github",
+                  "Javascript",
+                  "typescript",
+                  "react",
+                  "redux",
+                  "redux-saga",
+                  "redux-thunk",
+                  "gatsby",
+                  "next.js",
+                  "styled-components",
+                ]}
+              />
+              <InfoField
+                animProps={bottomAnimProps}
+                gridArea={"learning"}
+                label="Learning"
+                values={["react-native", "vue.js"]}
+              />
+            </Grid>
+          </GridWrapper>
+        </VisibilitySensor>
       </Scrollbars>
     </Wrapper>
   )

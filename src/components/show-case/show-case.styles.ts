@@ -1,6 +1,8 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import { animated } from "react-spring"
-import { Section } from "../../styles/general-components"
+import { Section, Lines, Line } from "../../styles/general-components"
+import media from "../../styles/media-queries"
+export { Lines, Line }
 
 export const Wrapper = styled(Section)`
   display: flex;
@@ -11,9 +13,9 @@ export const Wrapper = styled(Section)`
 
 export const Scrollbar = styled.div`
   position: absolute;
-  right: 8%;
+  right: 9%;
   width: 4rem;
-  height: 70%;
+  height: 60%;
   display: flex;
   justify-content: center;
   &::after {
@@ -22,6 +24,14 @@ export const Scrollbar = styled.div`
     height: 100%;
     width: 1px;
   }
+
+  ${media.BREAK_POINT_900PX(css`
+    right: 2%;
+  `)}
+
+  ${media.BREAK_POINT_450PX(css`
+    right: 0%;
+  `)}
 `
 
 export const ScrollController = styled.span<{ transition?: boolean }>`

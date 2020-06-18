@@ -1,6 +1,8 @@
-import styled from "styled-components"
-export { Tag } from "../info-field/info-field"
-export { Icon, IconWrapper } from "../../styles/general-components"
+import styled, { css } from "styled-components"
+import { animated } from "react-spring"
+import InfoField from "../info-field/info-field"
+
+import media from "../../styles/media-queries"
 
 export const Wrapper = styled.div`
   position: relative;
@@ -12,6 +14,11 @@ export const Wrapper = styled.div`
   & > *:not(:first-child) {
     margin-top: 1rem;
   }
+
+  ${media.BREAK_POINT_450PX(css`
+    justify-content: initial;
+    padding-left: 1rem;
+  `)}
 `
 
 export const Content = styled.div`
@@ -19,67 +26,155 @@ export const Content = styled.div`
   height: 43rem;
   width: 90rem;
   transition: all 0.2s ease-out;
-  &:hover > div:not(:hover) {
-    transform: scale(0.9);
-    z-index: 0;
-  }
+
+  ${media.BREAK_POINT_1100PX(css`
+    height: 51rem;
+    width: 67rem;
+  `)}
+
+  ${media.BREAK_POINT_900PX(
+    css`
+      &:hover > div:not(:hover) {
+        transform: scale(0.9) !important;
+        z-index: 0;
+      }
+    `,
+    "min-width"
+  )}
+
+  ${media.BREAK_POINT_900PX(css`
+    height: 85%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  `)}
+
+  ${media.BREAK_POINT_450PX(css`
+    width: 95%;
+  `)}
 `
 
-export const ProjectImg = styled.div<{ url: string }>`
+export const ProjectImg = styled(animated.div)<{ url: string }>`
   position: relative;
   z-index: 1;
-  width: 66.6%;
-  height: 100%;
+  width: 60rem;
+  height: 43rem;
   background: url(${p => p.url}) center/cover no-repeat;
   box-shadow: 10px 7px 20px 3px #000;
   border-radius: 1rem;
+  backface-visibility: hidden;
   transition: all 0.2s ease-out;
+  ${media.BREAK_POINT_900PX(css`
+    width: 100%;
+    height: 65%;
+  `)}
+  ${media.BREAK_POINT_450PX(css`
+    height: 70%;
+  `)}
 `
 
-// const getBeforeAfterHeight = (parentHeight: )
+export const ProjectImgOverlay = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background-color: transparent;
+  background-image: linear-gradient(
+    to bottom left,
+    transparent 10%,
+    #000000bf 60%
+  );
+  display: none;
+  flex-direction: column;
+  align-items: end;
+  justify-content: space-between;
+  padding: 1rem;
+  color: #fff;
+
+  ${media.BREAK_POINT_450PX(css`
+    background-image: linear-gradient(
+      to bottom left,
+      transparent 10%,
+      #000000bf 60%
+    );
+  `)}
+
+  .description {
+    text-align: center;
+    .stack {
+      flex-wrap: wrap;
+      justify-content: center;
+      display: none;
+    }
+
+    ${media.BREAK_POINT_450PX(css`
+      & .text {
+        display: none;
+      }
+      & .stack {
+        display: flex;
+      }
+    `)}
+  }
+
+  ${media.BREAK_POINT_900PX(css`
+    display: flex;
+  `)}
+`
+export const Stack = styled(InfoField)`
+  display: none;
+  margin-top: 2rem;
+  width: 100%;
+  max-width: unset;
+  ${media.BREAK_POINT_900PX(css`
+    display: flex;
+  `)}
+
+  ${media.BREAK_POINT_450PX(css`
+    display: none;
+  `)}
+`
+
+export const Links = styled.div`
+  position: absolute;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  justify-content: center;
+  & > *:not(:first-child) {
+    margin-top: 1rem;
+  }
+
+  ${media.BREAK_POINT_450PX(css`
+    right: unset;
+    left: 1;
+    top: 20%;
+    justify-content: start;
+  `)}
+`
 
 export const ProjectInfoWrapper = styled.div`
   position: relative;
   z-index: 1;
-  left: 30%;
+  left: 33.3%;
   top: -100%;
-  width: 66.6%;
-  height: 100%;
+  width: 60rem;
+  height: 43rem;
   transition: all 0.2s ease-out;
-`
+  backface-visibility: hidden;
+  transform: rotate(0.02deg);
 
-export const ProjectInfo = styled.div`
-  position: relative;
-  top: 10%;
-  height: 80%;
-  width: 100%;
-  background: ${p => p.theme.colors.background};
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`
+  ${media.BREAK_POINT_1100PX(css`
+    left: 10%;
+    top: -60%;
+  `)}
 
-export const Count = styled.span`
-  color: ${p => p.theme.colors.secondary};
-`
-
-export const Name = styled.span`
-  font-size: 2rem;
-  color: ${p => p.theme.colors.secondary};
-`
-
-export const Description = styled.span``
-
-export const Stack = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`
-export const Links = styled.div`
-  display: flex;
-  & > *:not(:first-child) {
-    margin-left: 2rem;
-  }
+  ${media.BREAK_POINT_900PX(css`
+    display: none;
+  `)}
 `
 
 /*

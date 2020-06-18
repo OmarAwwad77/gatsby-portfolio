@@ -1,7 +1,8 @@
-import React, { SetStateAction, Dispatch } from "react"
+import React from "react"
+import { OnWheelHandler } from "../pages/index"
 
 const Context = React.createContext({
-  navigate: (e: { deltaY: number }) => {},
+  navigate: (args: OnWheelHandler) => {},
 })
 
 export default Context

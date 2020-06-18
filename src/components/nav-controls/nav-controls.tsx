@@ -31,8 +31,8 @@ const NavControls = () => {
   const { navigate } = React.useContext(Context)
   return (
     <Wrapper>
-      <Icon onClick={() => navigate({ deltaY: 1 })} as={downIcon} />
-      <Icon onClick={() => navigate({ deltaY: -1 })} as={upIcon} />
+      <Icon onClick={() => navigate({ e: { deltaY: 1 } })} as={downIcon} />
+      <Icon onClick={() => navigate({ e: { deltaY: -1 } })} as={upIcon} />
     </Wrapper>
   )
 }

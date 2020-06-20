@@ -1,6 +1,8 @@
-module.exports = {
-  /* Your site config here */
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 
+module.exports = {
   siteMetadata: {
     email: "OmarAwwad@google.com",
     name: "Omar Awwad",
@@ -47,6 +49,14 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/assets/images/`,
+      },
+    },
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: `0zsg8vnc1b0z`,
+
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
   ],

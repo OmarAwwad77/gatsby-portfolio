@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components"
 import { animated } from "react-spring"
 import InfoField from "../info-field/info-field"
-
+import BackgroundImage from "gatsby-background-image"
 import media from "../../styles/media-queries"
 
 export const Wrapper = styled.div`
@@ -55,16 +55,36 @@ export const Content = styled.div`
   `)}
 `
 
-export const ProjectImg = styled(animated.div)<{ url: string }>`
+// export const ProjectImg = styled(animated.div)<{ url: string }>`
+//   position: relative;
+//   z-index: 1;
+//   width: 60rem;
+//   height: 43rem;
+//   background: url(${p => p.url}) center/cover no-repeat;
+//   box-shadow: 10px 7px 20px 3px #000;
+//   border-radius: 1rem;
+//   backface-visibility: hidden;
+//   transition: all 0.2s ease-out;
+//   ${media.BREAK_POINT_900PX(css`
+//     width: 100%;
+//     height: 65%;
+//   `)}
+//   ${media.BREAK_POINT_450PX(css`
+//     height: 70%;
+//   `)}
+// `
+
+export const ProjectImgWrapper = styled(animated.div)`
   position: relative;
   z-index: 1;
   width: 60rem;
   height: 43rem;
-  background: url(${p => p.url}) center/cover no-repeat;
   box-shadow: 10px 7px 20px 3px #000;
+  overflow: hidden;
   border-radius: 1rem;
   backface-visibility: hidden;
   transition: all 0.2s ease-out;
+
   ${media.BREAK_POINT_900PX(css`
     width: 100%;
     height: 65%;
@@ -72,6 +92,10 @@ export const ProjectImg = styled(animated.div)<{ url: string }>`
   ${media.BREAK_POINT_450PX(css`
     height: 70%;
   `)}
+`
+export const ProjectImg = styled(BackgroundImage)`
+  width: 100%;
+  height: 100%;
 `
 
 export const ProjectImgOverlay = styled.div`
@@ -108,7 +132,6 @@ export const ProjectImgOverlay = styled.div`
       justify-content: center;
       display: none;
     }
-
     ${media.BREAK_POINT_450PX(css`
       & .text {
         display: none;
@@ -151,7 +174,7 @@ export const Links = styled.div`
   ${media.BREAK_POINT_450PX(css`
     right: unset;
     left: 1;
-    top: 20%;
+    top: 25%;
     justify-content: start;
   `)}
 `

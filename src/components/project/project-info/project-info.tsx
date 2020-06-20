@@ -20,7 +20,7 @@ interface Props {
   name: string
   description: string
   stack: string[]
-  githubUrl: string
+  github: string
   link: string
 }
 
@@ -30,7 +30,7 @@ const ProjectInfo: React.FC<Props> = ({
   name,
   description,
   stack,
-  githubUrl,
+  github,
   link,
 }) => {
   return (
@@ -44,10 +44,10 @@ const ProjectInfo: React.FC<Props> = ({
         ))}
       </Stack>
       <Links>
-        <IconWrapper as="a" href={githubUrl} target="blank">
+        <IconWrapper as="a" href={github} target="blank">
           <Icon as={githubIcon} />
         </IconWrapper>
-        <IconWrapper>
+        <IconWrapper as="a" href={link} target="blank">
           <Icon as={linkIcon} />
         </IconWrapper>
       </Links>

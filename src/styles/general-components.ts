@@ -109,13 +109,3 @@ export const IconWrapper = styled.div<{ nav?: boolean }>`
       }
     `}
 `
-
-/*
-      1- https://images.unsplash.com/photo-1541837283948-d4242eda4585?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80
-
-      2- https://images.unsplash.com/photo-1591026433494-540fb0f481f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80
-
-      3- https://images.unsplash.com/photo-1544198365-f5d60b6d8190?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80
-
-      4- https://images.unsplash.com/photo-1516470801445-a2e8add1bd40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80
-*/

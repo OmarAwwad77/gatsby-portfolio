@@ -14,7 +14,7 @@ export const Wrapper = styled(Section)`
 export const Scrollbar = styled.div`
   position: absolute;
   right: 9%;
-  width: 4rem;
+  width: 6rem;
   height: 60%;
   display: flex;
   justify-content: center;
@@ -30,7 +30,7 @@ export const Scrollbar = styled.div`
   `)}
 
   ${media.BREAK_POINT_450PX(css`
-    right: 0%;
+    right: -2%;
   `)}
 `
 
@@ -53,18 +53,4 @@ export const ScrollController = styled.span<{ transition?: boolean }>`
     padding: 0 0.1rem;
     transform: skewY(-55deg) rotate(23deg);
   }
-`
-
-export const Projects = styled(animated.div)`
-  position: absolute;
-  top: 0;
-  width: 90%;
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
-  transform-origin: top;
 `

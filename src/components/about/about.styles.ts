@@ -73,6 +73,7 @@ export const ImgWrapper = styled(animated.div)`
   height: 50rem;
   border-radius: 1rem;
   overflow: hidden;
+
   box-shadow: 10px 8px 20px 1px #000;
   ${media.BREAK_POINT_520PX(css`
     width: 28rem;
@@ -85,7 +86,7 @@ export const Img = styled(BackgroundImage)`
   height: 100%;
 
   background-position: center 0;
-  background-size: 45rem;
+  background-size: 50rem;
   background-repeat: no-repeat;
 `
 

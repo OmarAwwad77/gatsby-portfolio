@@ -11,19 +11,31 @@ import {
   Wrapper,
   Content,
   ProjectImg,
+  ProjectImgWrapper,
   ProjectInfoWrapper,
   ProjectImgOverlay,
   Stack,
   Links,
 } from "./project.styles"
+import { FluidObject } from "gatsby-image"
 
 import { Count, Name, Tag } from "./project-info/project-info.styles"
 
-interface Props {
-  url: string
+export interface ProjectType {
+  count: string
+  name: string
+  description: { description: string }
+  stack: string[]
+  github: string
+  link: string
+  img: {
+    fluid: FluidObject
+  }
 }
 
-const Project: React.FC<Props> = ({ url }) => {
+const Project: React.FC<{ project: ProjectType }> = ({
+  project: { count, name, description, stack, github, link, img },
+}) => {
   const [visible, setVisible] = useState(false)
 
   const imgSpringRef = useRef<ReactSpringHook>(null)
@@ -55,46 +67,33 @@ const Project: React.FC<Props> = ({ url }) => {
         onChange={isVisible => setVisible(isVisible)}
       >
         <Content>
-          <ProjectImg style={imgAnimProps} url={url}>
-            <ProjectImgOverlay>
-              <div>
-                <Count>01.</Count>
-                <br />
-                <Name>Traveler's Map</Name>
-              </div>
-              <span className="description">
-                <span className="text">
-                  Traveler's map is an online community where travelers from
-                  around the globe can share beautiful destinations they have
-                  visited, follow fellow travelers and exchange information, all
-                  using an interactive online map.
-                </span>
-                <div className="stack">
-                  {[
-                    "typescript",
-                    "react",
-                    "redux",
-                    "redux-saga",
-                    "react-router",
-                    "react-leaflet",
-                    "leaflet-draw",
-                    "styled-components",
-                    "firebase",
-                  ].map(val => (
-                    <Tag key={val}>{val}</Tag>
-                  ))}
+          <ProjectImgWrapper style={imgAnimProps}>
+            <ProjectImg Tag="div" fluid={img.fluid}>
+              <ProjectImgOverlay>
+                <div className="name-count">
+                  <Count>{count}</Count>
+                  <br />
+                  <Name>{name}</Name>
                 </div>
-              </span>
-              <Links>
-                <IconWrapper as="a" href={""} target="blank">
-                  <Icon as={githubIcon} />
-                </IconWrapper>
-                <IconWrapper>
-                  <Icon as={linkIcon} />
-                </IconWrapper>
-              </Links>
-            </ProjectImgOverlay>
-          </ProjectImg>
+                <span className="description">
+                  <span className="text">{description.description}</span>
+                  <div className="stack">
+                    {stack.map(val => (
+                      <Tag key={val}>{val}</Tag>
+                    ))}
+                  </div>
+                </span>
+                <Links>
+                  <IconWrapper as="a" href={github} target="blank">
+                    <Icon as={githubIcon} />
+                  </IconWrapper>
+                  <IconWrapper as="a" href={link} target="blank">
+                    <Icon as={linkIcon} />
+                  </IconWrapper>
+                </Links>
+              </ProjectImgOverlay>
+            </ProjectImg>
+          </ProjectImgWrapper>
           <Stack
             animProps={infoAnimProps}
             label="Stack"
@@ -113,25 +112,12 @@ const Project: React.FC<Props> = ({ url }) => {
           <ProjectInfoWrapper>
             <ProjectInfo
               style={infoAnimProps}
-              count="01."
-              name="Traveler's Map"
-              description="Traveler's map is an online community where travelers from around
-            the globe can share beautiful destinations they have visited,
-            follow fellow travelers and exchange information, all using an
-            interactive online map."
-              stack={[
-                "typescript",
-                "react",
-                "redux",
-                "redux-saga",
-                "react-router",
-                "react-leaflet",
-                "leaflet-draw",
-                "styled-components",
-                "firebase",
-              ]}
-              githubUrl="http://www.google.com"
-              link=""
+              count={count}
+              name={name}
+              description={description.description}
+              stack={stack}
+              github={github}
+              link={link}
             />
           </ProjectInfoWrapper>
         </Content>

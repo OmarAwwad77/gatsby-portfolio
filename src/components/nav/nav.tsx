@@ -37,7 +37,7 @@ const Nav: React.FC<{ show?: boolean; onClick: () => void }> = ({
         </IconWrapper>
       </NavItem>
 
-      <NavItem>
+      <NavItem as="a" href="https://github.com/OmarAwwad77" target="_blank">
         <span>GitHub</span>
         <IconWrapper nav>
           <Icon as={githubIcon} />

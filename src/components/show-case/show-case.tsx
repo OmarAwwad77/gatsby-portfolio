@@ -1,11 +1,10 @@
 import React, { useState, useCallback, useEffect, useRef } from "react"
-import { useSpring } from "react-spring"
-import Project from "../project/project"
+import Projects from "../projects/projects"
+import { graphql, useStaticQuery } from "gatsby"
 
 import {
   Wrapper,
   Scrollbar,
-  Projects,
   ScrollController,
   Line,
   Lines,
@@ -15,13 +14,6 @@ interface Props {
   current: boolean
 }
 
-const projectsCount = 5
-const projectPercentage = 100 / (projectsCount - 1)
-const breakPoints = Array.from(Array(projectsCount)).map(
-  (_, i) => i * projectPercentage
-)
-const maxPercentage = 100 - (1 / projectsCount) * 100
-
 const ShowCase: React.FC<Props> = ({ current }) => {
   const [scroll, setScroll] = useState({
     top: 0,
@@ -29,9 +21,7 @@ const ShowCase: React.FC<Props> = ({ current }) => {
     till: 0,
   })
 
-  const [projects, setProjects] = useState({
-    scale: false,
-  })
+  const [scale, setScale] = useState(false)
 
   const wrapperRef = useRef<HTMLElement>(null)
   const scrollbarRef = useRef<HTMLDivElement>(null)
@@ -45,12 +35,36 @@ const ShowCase: React.FC<Props> = ({ current }) => {
     }
   }, [scroll.percentage])
 
-  const animStyles = useSpring({
-    from: { transform: `perspective(100px) translateY(0%) translateZ(0px) ` },
-    transform: `perspective(100px) translateY(${
-      -(maxPercentage * scroll.percentage) / 100 + "%"
-    }) translateZ(${projects.scale ? -35 : 0}px)`,
-  })
+  const {
+    allContentfulProject: { nodes: projects },
+  } = useStaticQuery(graphql`
+    {
+      allContentfulProject(sort: { fields: count, order: ASC }) {
+        nodes {
+          id
+          count
+          name
+          stack
+          github
+          link
+          img {
+            fluid(quality: 100) {
+              ...GatsbyContentfulFluid
+            }
+          }
+          description {
+            description
+          }
+        }
+      }
+    }
+  `)
+
+  const projectsCount = projects.length
+  const projectPercentage = 100 / (projectsCount - 1)
+  const breakPoints = Array.from(Array(projectsCount)).map(
+    (_, i) => i * projectPercentage
+  )
 
   const onMouseMove = useCallback((e: any) => {
     const element = scrollbarRef.current!
@@ -77,7 +91,7 @@ const ShowCase: React.FC<Props> = ({ current }) => {
       percentage: breakPoints[index],
       top: (scrollbarHeight * breakPoints[index]) / 100,
     }))
-    setProjects({ scale: false })
+    setScale(false)
     scrollbarRef.current!.removeEventListener("mousemove", onMouseMove)
     scrollbarRef.current!.removeEventListener("touchmove", onMouseMove)
   }
@@ -96,7 +110,7 @@ const ShowCase: React.FC<Props> = ({ current }) => {
     if (scrollDir === "top" && scroll.percentage !== 0) {
       e.stopPropagation()
       setScroll(prevState => {
-        const percentage = prevState.percentage - projectPercentage
+        const percentage = Math.max(prevState.percentage - projectPercentage, 0)
         return {
           ...prevState,
           percentage,
@@ -107,7 +121,10 @@ const ShowCase: React.FC<Props> = ({ current }) => {
     } else if (scrollDir === "bottom" && scroll.percentage !== 100) {
       e.stopPropagation()
       setScroll(prevState => {
-        const percentage = prevState.percentage + projectPercentage
+        const percentage = Math.min(
+          prevState.percentage + projectPercentage,
+          100
+        )
         return {
           ...prevState,
           percentage,
@@ -127,33 +144,27 @@ const ShowCase: React.FC<Props> = ({ current }) => {
         <Line delay={".5s"} />
         <Line delay={"1.5s"} />
       </Lines>
-      <Projects style={animStyles}>
-        <Project
-          url={
-            "https://firebasestorage.googleapis.com/v0/b/connect-c44e6.appspot.com/o/images%2F1591353475621?alt=media&token=d086a12e-9d92-4b08-9e4b-a7ab924dba54"
-          }
-        />
-      </Projects>
+      <Projects
+        scale={scale}
+        percentage={scroll.percentage}
+        projects={projects}
+      />
       <Scrollbar
         ref={scrollbarRef}
         onMouseLeave={onMouseUpOrLeave}
         onMouseUp={onMouseUpOrLeave}
         onMouseDown={e => {
           e.preventDefault()
-          setProjects({ scale: true })
+          setScale(true)
           e.currentTarget.addEventListener("mousemove", onMouseMove)
         }}
         onTouchStart={e => {
-          e.preventDefault()
-          setProjects({ scale: true })
+          setScale(true)
           e.currentTarget.addEventListener("touchmove", onMouseMove)
         }}
         onTouchEnd={onMouseUpOrLeave}
       >
-        <ScrollController
-          transition={!projects.scale}
-          style={{ top: scroll.top }}
-        >
+        <ScrollController transition={!scale} style={{ top: scroll.top }}>
           <span className="project-number">
             {Math.round(scroll.percentage / projectPercentage) + 1}
           </span>

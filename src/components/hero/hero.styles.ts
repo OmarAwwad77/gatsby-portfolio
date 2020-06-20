@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components"
 import { animated } from "react-spring"
 
-import { Section, Line, Lines } from "../../styles/general-components"
-export { Line, Lines }
+import { Section, Line, LinesWithBg } from "../../styles/general-components"
+export { Line, LinesWithBg }
 import media from "../../styles/media-queries"
 
 export const Wrapper = styled(Section)`

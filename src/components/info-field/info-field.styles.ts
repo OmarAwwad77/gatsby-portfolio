@@ -16,6 +16,7 @@ export const Wrapper = styled(animated.div)<WrapperProps>`
 
 const label_value_styles = css`
   font-family: "IBM Plex Sans";
+  text-align: center;
   font-size: 1.3rem;
   border: 1px solid #69696930;
   display: flex;

@@ -1,4 +1,5 @@
 import styled, { keyframes, css } from "styled-components"
+import BackgroundImage from "gatsby-background-image"
 
 export const Section = styled.section<{ current: boolean }>`
   position: relative;
@@ -54,8 +55,8 @@ export const Line = styled.div<{ delay?: string }>`
   }
 `
 
-export const Lines = styled.div<{ withImg?: boolean }>`
-  position: absolute;
+const linesStyles = css`
+  position: absolute !important;
   z-index: -1;
   top: 0;
   left: 0;
@@ -63,13 +64,15 @@ export const Lines = styled.div<{ withImg?: boolean }>`
   height: 100%;
   display: flex;
   justify-content: space-evenly;
-  ${p =>
-    p.withImg &&
-    css`
-      background: url("https://images.unsplash.com/photo-1591026433494-540fb0f481f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80")
-          center/cover no-repeat,
-        #252324c7;
-    `}
+`
+
+export const Lines = styled.div`
+  ${linesStyles}
+`
+
+export const LinesWithBg = styled(BackgroundImage)`
+  ${linesStyles}
+  background-color: #2523246b;
   background-blend-mode: soft-light;
 `
 
@@ -106,3 +109,13 @@ export const IconWrapper = styled.div<{ nav?: boolean }>`
       }
     `}
 `
+
+/*
+      1- https://images.unsplash.com/photo-1541837283948-d4242eda4585?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80
+
+      2- https://images.unsplash.com/photo-1591026433494-540fb0f481f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80
+
+      3- https://images.unsplash.com/photo-1544198365-f5d60b6d8190?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80
+
+      4- https://images.unsplash.com/photo-1516470801445-a2e8add1bd40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80
+*/

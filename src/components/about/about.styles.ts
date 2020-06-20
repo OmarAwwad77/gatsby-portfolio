@@ -5,10 +5,13 @@ export {
   Lines,
   Line,
 } from "../../styles/general-components"
+import BackgroundImage from "gatsby-background-image"
 
 import media from "../../styles/media-queries"
 
 export const Grid = styled.div`
+  max-width: 1700px;
+  margin: 0 auto;
   display: grid;
   width: 90%;
   height: 90%;
@@ -64,21 +67,26 @@ export const GridWrapper = styled.div`
   `)}
 `
 
-export const Img = styled(animated.div)<{ url: string }>`
+export const ImgWrapper = styled(animated.div)`
   grid-area: img;
-  align-self: center;
   width: 35rem;
   height: 50rem;
   border-radius: 1rem;
-  background-image: url(${p => p.url});
-  background-position: center 0;
-  background-size: 55rem;
-  background-repeat: no-repeat;
+  overflow: hidden;
   box-shadow: 10px 8px 20px 1px #000;
-
   ${media.BREAK_POINT_520PX(css`
     width: 28rem;
   `)}
+`
+
+export const Img = styled(BackgroundImage)`
+  align-self: center;
+  width: 100%;
+  height: 100%;
+
+  background-position: center 0;
+  background-size: 45rem;
+  background-repeat: no-repeat;
 `
 
 export const Title = styled(animated.h2)`

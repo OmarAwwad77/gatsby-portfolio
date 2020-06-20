@@ -2,11 +2,14 @@ import React, { useRef, useState } from "react"
 import { useTheme } from "styled-components"
 import { useChain, useSpring, ReactSpringHook } from "react-spring"
 import VisibilitySensor from "../visibility-sensor"
+import { useStaticQuery, graphql } from "gatsby"
+import { FluidObject } from "gatsby-image"
 
 import {
   Wrapper,
   Grid,
   Img,
+  ImgWrapper,
   Title,
   GridWrapper,
   Lines,
@@ -19,8 +22,63 @@ import InfoField from "../info-field/info-field"
 interface Props {
   current: boolean
 }
+
+interface AboutData {
+  email: string
+  name: string
+  age: string
+  phone: string
+  education: string
+  speaks: string
+  university: string
+  skills: string[]
+  learning: string[]
+  aboutMe: string
+}
+
+interface AboutQuery {
+  site: {
+    aboutData: AboutData
+  }
+  mePng: {
+    childImageSharp: {
+      fluid: FluidObject
+    }
+  }
+}
+
 const About: React.FC<Props> = ({ current }) => {
   const { colors } = useTheme()
+  const {
+    mePng: {
+      childImageSharp: { fluid },
+    },
+    site: { aboutData },
+  } = useStaticQuery<AboutQuery>(graphql`
+    {
+      mePng: file(relativePath: { eq: "me.jpg" }) {
+        childImageSharp {
+          fluid(quality: 100) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+      site {
+        aboutData: siteMetadata {
+          email
+          name
+          age
+          phone
+          education
+          speaks
+          university
+          skills
+          learning
+          aboutMe
+        }
+      }
+    }
+  `)
 
   const [visible, setVisible] = useState(false)
 
@@ -102,100 +160,75 @@ const About: React.FC<Props> = ({ current }) => {
           once
           partialVisibility
           onChange={isVisible => {
-            console.log(isVisible)
             setVisible(isVisible)
           }}
         >
           <GridWrapper>
             <Grid>
-              <Img
-                style={leftAnimProps}
-                url={
-                  "https://firebasestorage.googleapis.com/v0/b/connect-c44e6.appspot.com/o/images%2F1591360719246?alt=media&token=d7a57ccb-9409-4db0-bd1c-423a0c11b185"
-                }
-              />
+              <ImgWrapper style={leftAnimProps}>
+                <Img fluid={fluid} />
+              </ImgWrapper>
+
               <Title style={topAnimProps}>
                 Hello!, I'm <span>Omar Awwad</span>
                 <br /> Javascript/React Enthusiast
               </Title>
-              <AboutMe style={rightAnimProps}>
-                I have been playing with react for a little over 2 years after
-                one of my college professors advised me to give it a try and I
-                have been in love with it ever since. After I graduated in july
-                2019 with a Bachelor's degree in IT, I got a scholarship to
-                pursue a master's degree in management information system.
-                However after only one semester I decided to stop and work
-                full-time instead.
-              </AboutMe>
+              <AboutMe style={rightAnimProps}>{aboutData.aboutMe}</AboutMe>
               <InfoField
                 animProps={rightAnimProps}
                 gridArea={"name"}
                 label="Name"
-                value="Omar Awwad"
+                value={aboutData.name}
               />
               <InfoField
                 animProps={rightAnimProps}
                 gridArea={"age"}
                 label="Age"
-                value="24"
+                value={aboutData.age}
               />
               <InfoField
                 animProps={rightAnimProps}
                 gridArea={"email"}
                 label="Email"
-                value="OmarAwwad010@gmail.com"
+                value={aboutData.email}
               />
               <InfoField
                 animProps={rightAnimProps}
                 gridArea={"phone"}
                 label="Phone"
-                value="+2 01116409608"
+                value={aboutData.phone}
               />
               <InfoField
                 animProps={rightAnimProps}
                 gridArea={"education"}
                 label="Education"
-                value="Bsc. Information Technology"
+                value={aboutData.education}
               />
               <InfoField
                 animProps={rightAnimProps}
                 gridArea={"languages"}
                 label="Speaks"
-                value="English/Arabic"
+                value={aboutData.speaks}
               />
 
               <InfoField
                 animProps={rightAnimProps}
                 gridArea={"university"}
                 label="University"
-                value="Eastern Mediterranean University (Northern Cyprus) "
+                value={aboutData.university}
               />
 
               <InfoField
                 animProps={bottomAnimProps}
                 gridArea={"skills"}
                 label="Skills"
-                values={[
-                  "html5",
-                  "css3",
-                  "sass",
-                  "git/github",
-                  "Javascript",
-                  "typescript",
-                  "react",
-                  "redux",
-                  "redux-saga",
-                  "redux-thunk",
-                  "gatsby",
-                  "next.js",
-                  "styled-components",
-                ]}
+                values={aboutData.skills}
               />
               <InfoField
                 animProps={bottomAnimProps}
                 gridArea={"learning"}
                 label="Learning"
-                values={["react-native", "vue.js"]}
+                values={aboutData.learning}
               />
             </Grid>
           </GridWrapper>

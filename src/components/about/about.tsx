@@ -150,6 +150,9 @@ const About: React.FC<Props> = ({ current }) => {
         <Line delay={"1.5s"} />
       </Lines>
       <Scrollbars
+        autoHide
+        hideTracksWhenNotNeeded
+        universal={true}
         style={{ transform: "translateZ(0)" }}
         renderThumbVertical={() => (
           <div style={{ background: colors.secondary }} />

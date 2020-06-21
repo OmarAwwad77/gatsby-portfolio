@@ -25,6 +25,7 @@ module.exports = {
       "gatsby",
       "next.js",
       "styled-components",
+      "webpack"
     ],
     learning: ["react-native", "vue.js"],
     aboutMe:

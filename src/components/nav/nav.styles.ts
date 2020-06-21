@@ -35,6 +35,8 @@ export const NavItem = styled.li`
   justify-content: center;
   min-width: 4rem;
 
+  text-decoration: none;
+
   span {
     display: none;
     position: relative;

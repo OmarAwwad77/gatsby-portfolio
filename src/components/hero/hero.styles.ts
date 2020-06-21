@@ -48,7 +48,7 @@ export const P = styled(animated.p)`
   background: #000;
 `
 
-export const PortfolioButton = styled(animated.a)`
+export const HeroButton = styled(animated.a)`
   position: relative;
   text-transform: uppercase;
   color: #fff;

@@ -1,14 +1,7 @@
-import React, { useRef } from "react"
-import styled from "styled-components"
+import React, { useRef, useContext } from "react"
 import { useChain, useSpring, ReactSpringHook } from "react-spring"
-import {
-  Wrapper,
-  LinesWithBg,
-  Line,
-  H1,
-  P,
-  PortfolioButton,
-} from "./hero.styles"
+import { Wrapper, LinesWithBg, Line, H1, P, HeroButton } from "./hero.styles"
+import Context from "../context"
 import { graphql, useStaticQuery } from "gatsby"
 
 interface OwnProps {
@@ -31,6 +24,8 @@ const hero: React.FC<OwnProps> = ({ current }) => {
       }
     }
   `)
+
+  const { navigate } = useContext(Context)
 
   const h1SpringRef = useRef<ReactSpringHook>(null)
   const pSpringRef = useRef<ReactSpringHook>(null)
@@ -71,9 +66,12 @@ const hero: React.FC<OwnProps> = ({ current }) => {
         Front-end web developer
       </H1>
       <P style={pAnimProps}>Javascript/React Ninja</P>
-      <PortfolioButton style={buttonAnimProps}>
+      <HeroButton
+        style={buttonAnimProps}
+        onClick={() => navigate({ navConfig: { index: 2, y: -200 } })}
+      >
         <span>my portfolio</span>
-      </PortfolioButton>
+      </HeroButton>
     </Wrapper>
   )
 }

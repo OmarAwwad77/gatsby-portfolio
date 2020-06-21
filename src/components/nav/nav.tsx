@@ -5,6 +5,7 @@ import homeIcon from "../../assets/home-solid.svg"
 import userIcon from "../../assets/user-solid.svg"
 import portfolioIcon from "../../assets/briefcase-solid.svg"
 import githubIcon from "../../assets/github.svg"
+import resumeIcon from "../../assets/file-solid.svg"
 
 import { Icon, IconWrapper, NavItem, Wrapper } from "./nav.styles"
 
@@ -41,6 +42,13 @@ const Nav: React.FC<{ show?: boolean; onClick: () => void }> = ({
         <span>GitHub</span>
         <IconWrapper nav>
           <Icon as={githubIcon} />
+        </IconWrapper>
+      </NavItem>
+
+      <NavItem as="a" href="../../cv.pdf" target="_blank">
+        <span>Resume</span>
+        <IconWrapper nav>
+          <Icon as={resumeIcon} />
         </IconWrapper>
       </NavItem>
     </Wrapper>

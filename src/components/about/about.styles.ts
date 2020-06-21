@@ -86,7 +86,7 @@ export const Img = styled(BackgroundImage)`
   height: 100%;
 
   background-position: center 0;
-  background-size: 50rem;
+  background-size: 47rem;
   background-repeat: no-repeat;
 `
 

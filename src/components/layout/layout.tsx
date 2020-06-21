@@ -36,6 +36,7 @@ const Layout: React.FC<Props> = ({ children, y }) => {
           href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap"
           rel="stylesheet"
         ></link>
+        <title>Awwad</title>
       </Helmet>
       <MenuIconWrapper onClick={() => setShowNav(prev => !prev)}>
         <MenuIcon />

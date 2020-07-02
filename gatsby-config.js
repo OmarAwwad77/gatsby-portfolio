@@ -4,7 +4,7 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    email: "OmarAwwad@google.com",
+    email: "OmarAwwad010@gmail.com",
     name: "Omar Awwad",
     age: "24",
     phone: "+2 01116409608",
@@ -25,7 +25,7 @@ module.exports = {
       "gatsby",
       "next.js",
       "styled-components",
-      "webpack"
+      "webpack",
     ],
     learning: ["react-native", "vue.js"],
     aboutMe:

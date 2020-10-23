@@ -28,9 +28,12 @@ module.exports = {
       "material-ui",
       "webpack",
     ],
-    learning: ["react-native", "vue.js"],
+    learning: ["python"],
+    // aboutMe:
+    //   "I have been playing with react for a little over 2 years after one of my college professors advised me to give it a try and I have been in love with it ever since. After I graduated in july 2019 with a Bachelor's degree in IT, I got a scholarship to pursue a master's degree in management information system. However after only one semester I decided to stop and work full-time instead.",
     aboutMe:
-      "I have been playing with react for a little over 2 years after one of my college professors advised me to give it a try and I have been in love with it ever since. After I graduated in july 2019 with a Bachelor's degree in IT, I got a scholarship to pursue a master's degree in management information system. However after only one semester I decided to stop and work full-time instead.",
+    
+      "I have worked on a few web and mobile projects as a freelancer during my university years using technologies such as ionic, sql and php. I also had a summer training for 2 months as a part of my undergraduate degree during my last year as university student. I'm working with MERN stack. However I gradually acquired an interest in Artificial Intelligence and currently learning python.",
   },
   plugins: [
     {

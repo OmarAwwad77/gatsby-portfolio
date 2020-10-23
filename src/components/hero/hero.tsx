@@ -63,9 +63,9 @@ const hero: React.FC<OwnProps> = ({ current }) => {
       <H1 style={h1AnimProps}>
         Hello!,
         <br /> I'm <span>omar awwad</span> <br />
-        Front-end web developer
+        Javascript Full Stack Developer
       </H1>
-      <P style={pAnimProps}>Javascript/React Ninja</P>
+      <P style={pAnimProps}>Javascript Ninja</P>
       <HeroButton
         style={buttonAnimProps}
         onClick={() => navigate({ navConfig: { index: 2, y: -200 } })}

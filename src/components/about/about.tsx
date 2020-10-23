@@ -174,7 +174,7 @@ const About: React.FC<Props> = ({ current }) => {
 
               <Title style={topAnimProps}>
                 Hello!, I'm <span>Omar Awwad</span>
-                <br /> Javascript/React Enthusiast
+                <br /> Javascript and AI Enthusiast
               </Title>
               <AboutMe style={rightAnimProps}>{aboutData.aboutMe}</AboutMe>
               <InfoField

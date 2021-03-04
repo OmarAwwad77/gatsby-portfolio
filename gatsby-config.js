@@ -6,11 +6,11 @@ module.exports = {
   siteMetadata: {
     email: "OmarAwwad010@gmail.com",
     name: "Omar Awwad",
-    age: "24",
-    phone: "+2 01116409608",
-    education: "Bsc. Information Technology",
+    age: "25",
+    phone: "07435240816",
+    education: "Msc. Artificial Intelligence",
     speaks: "English/Arabic",
-    university: "Eastern Mediterranean University (Northern Cyprus)",
+    university: "Huddersfield University",
     // skills: [
     //   "Javascript",
     //   "typescript",
@@ -29,27 +29,23 @@ module.exports = {
     //   "webpack",
     // ],
     skills: [
+      "python",
       "Javascript",
       "typescript",
-      "node.js",
-      "mongodb",
       "sql",
       "react",
       "redux",
       "redux-saga",
       "gatsby",
       "next.js",
-      "react-spring",
-      "styled-components",
-      "material-ui",
       "webpack",
     ],
-    learning: ["python"],
+    learning: ["Panda", "NumPy", "scikit-learn", "PyTorch", "MATLAB"],
     // aboutMe:
     //   "I have been playing with react for a little over 2 years after one of my college professors advised me to give it a try and I have been in love with it ever since. After I graduated in july 2019 with a Bachelor's degree in IT, I got a scholarship to pursue a master's degree in management information system. However after only one semester I decided to stop and work full-time instead.",
     aboutMe:
     
-      "I have worked on a few web and mobile projects as a freelancer during my university years using technologies such as ionic, sql and php. I also had a summer training for 2 months as a part of my undergraduate degree during my last year. I mainly work with MERN stack. However I gradually acquired an interest in Artificial Intelligence and currently learning python.",
+      "I have worked on a few web projects as a freelancer during my university years, I also had summer training for 2 months during the last year of my undergraduate studies. I mainly used to work with MERN stack. However, I gradually acquired an interest in Artificial Intelligence and currently I am looking for an internship opportunity",
   },
   plugins: [
     {

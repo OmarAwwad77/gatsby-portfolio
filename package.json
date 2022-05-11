@@ -1,10 +1,13 @@
 {
   "name": "gatsby-starter-hello-world",
+  "homepage": "https://OmarAwwad77.github.io/gatsby-starter-hello-world",
   "private": true,
   "description": "A simplified bare-bones starter for Gatsby",
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy":"gatsby build --prefix-paths && gh-pages -d public",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
@@ -40,6 +43,7 @@
     "styled-components": "^5.1.1"
   },
   "devDependencies": {
+    "gh-pages": "^4.0.0",
     "prettier": "2.0.5"
   },
   "repository": {

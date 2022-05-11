@@ -3,6 +3,7 @@ require("dotenv").config({
 })
 
 module.exports = {
+  pathPrefix: "/gatsby-portfolio",
   siteMetadata: {
     email: "OmarAwwad010@gmail.com",
     name: "Omar Awwad",

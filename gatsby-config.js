@@ -31,15 +31,19 @@ module.exports = {
     // ],
     skills: [
       "python",
-      "Javascript",
+      "Html/Css",
+      "javascript",
       "typescript",
-      "sql",
-      "react",
+      "react.js",
       "redux",
-      "redux-saga",
-      "gatsby",
       "next.js",
-      "webpack",
+      "matlab",
+      "numpy",
+      "pandas",
+      "sci-kit-learn",
+      "tensorflow",
+      "git",
+      "sql",
     ],
     // learning: ["Panda", "NumPy", "scikit-learn", "PyTorch", "MATLAB"], , , AWS
     learning: ["Node.js", "Mongo dB", "AWS"],
@@ -47,7 +51,7 @@ module.exports = {
     //   "I have been playing with react for a little over 2 years after one of my college professors advised me to give it a try and I have been in love with it ever since. After I graduated in july 2019 with a Bachelor's degree in IT, I got a scholarship to pursue a master's degree in management information system. However after only one semester I decided to stop and work full-time instead.",
     aboutMe:
     
-      "I have worked on a few web projects as a freelancer during my university years, I also had summer training for 2 months during the last year of my undergraduate studies. I mainly used to work with MERN stack. However, I gradually acquired an interest in Artificial Intelligence and currently I am looking for an internship opportunity",
+      "I have worked on a few web projects as a freelancer during my university years, I also had summer training for 2 months during the last year of my undergraduate studies. I mainly used to work with MERN stack. However, I gradually acquired an interest in Artificial Intelligence which pushed me to pursue a master's degree in AI. I'm currently looking for work as a software engineer",
   },
   plugins: [
     {

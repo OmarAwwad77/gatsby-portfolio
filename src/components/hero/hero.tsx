@@ -64,7 +64,7 @@ const hero: React.FC<OwnProps> = ({ current }) => {
         Hello!,
         <br /> I'm <span>omar awwad</span> <br />
       </H1>
-      <P style={pAnimProps}>AI Enthusiast</P>
+      <P style={pAnimProps}>Software Engineer</P>
       <HeroButton
         style={buttonAnimProps}
         onClick={() => navigate({ navConfig: { index: 2, y: -200 } })}

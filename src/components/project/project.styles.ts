@@ -11,6 +11,10 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  &, &:hover, &:active, &:focus{
+    text-decoration: none;
+    color: inherit;
+  } 
   & > *:not(:first-child) {
     margin-top: 1rem;
   }

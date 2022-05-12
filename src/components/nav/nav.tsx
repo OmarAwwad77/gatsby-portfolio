@@ -45,7 +45,7 @@ const Nav: React.FC<{ show?: boolean; onClick: () => void }> = ({
         </IconWrapper>
       </NavItem>
 
-      <NavItem as="a" href="../../cv.pdf" target="_blank">
+      <NavItem as="a" href="../../Resume.docx" target="_blank">
         <span>Resume</span>
         <IconWrapper nav>
           <Icon as={resumeIcon} />

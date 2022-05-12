@@ -174,10 +174,10 @@ const About: React.FC<Props> = ({ current }) => {
 
               <Title style={topAnimProps}>
                 Hello!, I'm <span>Omar Awwad</span>
-                <br /> AI Enthusiast
+                <br /> Software Engineer
               </Title>
               <AboutMe style={rightAnimProps}>{aboutData.aboutMe}</AboutMe>
-              <InfoField
+              {/* <InfoField
                 animProps={rightAnimProps}
                 gridArea={"name"}
                 label="Name"
@@ -188,7 +188,7 @@ const About: React.FC<Props> = ({ current }) => {
                 gridArea={"age"}
                 label="Age"
                 value={aboutData.age}
-              />
+              /> */}
               <InfoField
                 animProps={rightAnimProps}
                 gridArea={"email"}
@@ -227,12 +227,12 @@ const About: React.FC<Props> = ({ current }) => {
                 label="Skills"
                 values={aboutData.skills}
               />
-              <InfoField
+              {/* <InfoField
                 animProps={bottomAnimProps}
                 gridArea={"learning"}
                 label="Learning"
                 values={aboutData.learning}
-              />
+              /> */}
             </Grid>
           </GridWrapper>
         </VisibilitySensor>

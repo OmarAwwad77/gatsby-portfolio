@@ -60,7 +60,7 @@ const Project: React.FC<{ project: ProjectType }> = ({
   useChain(visible ? [imgSpringRef, infoSpringRef] : [], [0, 1])
 
   return (
-    <Wrapper>
+    <Wrapper as="a" href={link} target="blank">
       <VisibilitySensor
         once
         partialVisibility
